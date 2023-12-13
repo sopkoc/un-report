@@ -1,4 +1,5 @@
 #Script to analyze relationship
+#cheese and crackers
 library(tidyverse)
 gapminder_1997 <- read_csv("gapminder_1997.csv")
 View(gapminder_1997)
