@@ -9,22 +9,60 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r packages}
+```{r packages, include=FALSE}
 library(tidyverse)
 ```
 
 This report was prepared to the attention of the United Nation. 
 
-```{r data}
+```{r data, include=FALSE}
 gapminder_1997 <- read_csv("gapminder_1997.csv")
 ```
-```{r}
+```{r, include=FALSE}
 gapminder_1997
 ```
 
 #ggplot (gdpPercap, lifeExp, point, color by continent, symbolize in millions)
-```{r}
+```{r, echo=FALSE}
 ggplot(gapminder_1997, aes(x=gdpPercap, y=lifeExp, color=continent, size=pop/100000))+
-         geom_point()
+  geom_point()+
+  labs(x= "GDP Per Capita",y="Life Expectancy",title="GDP v. Live Expectancy", size="Population")
+```
+```{r include=FALSE}
+nCountries <- gapminder_1997 %>% 
+  select(country) %>% 
+  n_distinct()
+
+nCountries
+```
+```{r include=FALSE}
+minGDP <- gapminder_1997 %>% 
+  summarize(round(min(gdpPercap))) %>% 
+  pull()
+
+minGDP
+```
+```{r include=FALSE}
+maxGDP <- gapminder_1997 %>% 
+  summarise(round(max(gdpPercap))) %>% 
+  pull()
+
+maxGDP
+```
+
+|Summary of Data|
+|--------|--------|
+|Number of Countries|`r nCountries`|
+|Minimum GDP|`r minGDP`|
+|Maximum GDP|`r maxGDP`|
+
+```{r include=FALSE}
+library(knitr) #need to load library knitr for use of kable fun
+
+gapminder_1997 %>% 
+  filter(continent == "Oceania") %>% 
+  select(country, pop, gdpPercap) %>% 
+  kable()
+
 ```
 
