@@ -1,0 +1,30 @@
+---
+title: "A UN Report on the Relationship Between GDP and Life Expectancy"
+author: "sopkoc"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+```
+
+This report was prepared to the attention of the United Nation. 
+
+```{r data}
+gapminder_1997 <- read_csv("gapminder_1997.csv")
+```
+```{r}
+gapminder_1997
+```
+
+#ggplot (gdpPercap, lifeExp, point, color by continent, symbolize in millions)
+```{r}
+ggplot(gapminder_1997, aes(x=gdpPercap, y=lifeExp, color=continent, size=pop/100000))+
+         geom_point()
+```
+

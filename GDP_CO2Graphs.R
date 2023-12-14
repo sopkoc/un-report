@@ -77,3 +77,4 @@ gapmind_2007 <- inner_join(gapminder_data_2007, co2_emissions, by="country")
 ggplot(gapmind_2007, aes(x=gdpPercap, y=per_capita_emissions))+
   geom_point()+
   labs(x = "GDP (per capita)", y = "CO2 emitted (per capita)", title = "Strong association between a nation's GDP and CO2 production")
+#cheese
